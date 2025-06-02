@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useMemo } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,6 +7,7 @@ import { Eye, Pencil, Trash2, Plus, Filter } from 'lucide-react';
 import { useNavigate,Link } from 'react-router-dom';
 import PerInfo from '../AddEmployee/PerInfo';
 import { Search } from "lucide-react"; // or use another search icon
+import FilterMethod from './FilterMethod';
 
 const employees = [
   // ...your full employees array here
@@ -60,23 +61,55 @@ const employees = [
   { name: "Devon Lane", id: "091233412", dept: "BA", role: "Business Analyst", type: "Remote", status: "Permanent" },
 ];
 
+
 const ITEMS_PER_PAGE = 7;
 
 const Dashboard = () => {
   const [searchText, setSearchText] = useState('');
+  const [searchText1, setSearchText1] = useState('');
+  const [searchText2, setSearchText2] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [selectedDepartments, setSelectedDepartments] = useState([]);
   const [workType, setWorkType] = useState("");
+  const [blur, setBlur] = useState(false);
+
+  const [design,setDesign]=useState('')
+  const [developement,setDevelopement]=useState('')
+  const [sales,setSales]=useState('')
+  const [hr,setHr]=useState('')
+  const [pm,setPm]=useState('')
+
 
   const toggleDepartment = (dept) => {
-    setSelectedDepartments((prev) =>
-      prev.includes(dept)
+    setSelectedDepartments((prev) => {
+      const updated = prev.includes(dept)
         ? prev.filter((d) => d !== dept)
-        : [...prev, dept]
-    );
+        : [...prev, dept];
+  
+      // Check if Design is included after toggle
+      if (updated.includes("Design")) {
+        setDesign("Design");
+      } 
+      else if(updated.includes("Developement")){
+        setDevelopement("Developement");
+      }
+      else if(updated.includes("Sales")){
+        setSales("Sales");
+      }
+      else if(updated.includes("HR")){
+        setHr("HR");
+      }
+      else if(updated.includes("PM")){
+        setPm("PM");
+      }
+      else {
+        setDesign("");setDevelopement("");setSales("");
+      }
+  console.log(design)
+      return updated;
+    });
   };
+  
 
   const handleApply = () => {
     console.log("Departments:", selectedDepartments);
@@ -84,10 +117,68 @@ const Dashboard = () => {
     setBlur(false);
   };
 
-  const filteredEmployees = employees.filter((emp) =>
-    emp.name.toLowerCase().includes(searchText.toLowerCase())
-  );
-
+  const filteredEmployees = employees.filter((emp) => {
+    const name = emp.name.toLowerCase();
+    const empDept = emp.dept;
+    const s1 = searchText.toLowerCase();
+    const s2 = searchText1.toLowerCase();
+    const s3 = searchText2.toLowerCase();
+  
+    // Case: if design is "Design", filter only "Design" employees
+    if (design === "Design") {
+      if (empDept !== "Design") return false; // Only include Design dept
+  
+      // If all search fields are empty, include all Design employees
+      if (!s1 && !s2 && !s3) return true;
+  
+      // Apply name filters for Design employees
+      return name.includes(s1) || name.includes(s2) || name.includes(s3);
+    }
+    if (developement === "Developement") {
+      if (empDept !== "Developement") return false; // Only include Design dept
+  
+      // If all search fields are empty, include all Design employees
+      if (!s1 && !s2 && !s3) return true;
+  
+      // Apply name filters for Design employees
+      return name.includes(s1) || name.includes(s2) || name.includes(s3);
+    }
+    if (sales === "Sales") {
+      if (empDept !== "Sales") return false; // Only include Design dept
+  
+      // If all search fields are empty, include all Design employees
+      if (!s1 && !s2 && !s3) return true;
+  
+      // Apply name filters for Design employees
+      return name.includes(s1) || name.includes(s2) || name.includes(s3);
+    }
+    if (hr === "HR") {
+      if (empDept !== "HR") return false; // Only include Design dept
+  
+      // If all search fields are empty, include all Design employees
+      if (!s1 && !s2 && !s3) return true;
+  
+      // Apply name filters for Design employees
+      return name.includes(s1) || name.includes(s2) || name.includes(s3);
+    }
+    if (pm === "PM") {
+      if (empDept !== "PM") return false; // Only include Design dept
+  
+      // If all search fields are empty, include all Design employees
+      if (!s1 && !s2 && !s3) return true;
+  
+      // Apply name filters for Design employees
+      return name.includes(s1) || name.includes(s2) || name.includes(s3);
+    }
+    // Case: design is not "Design" — just use name filters for all employees
+    if (!s1 && !s2 && !s3) return true; // No filters applied
+  
+    return name.includes(s1) || name.includes(s2) || name.includes(s3);
+  });
+  
+  
+  
+ 
   const totalPages = Math.ceil(filteredEmployees.length / ITEMS_PER_PAGE);
 
   const paginatedEmployees = filteredEmployees.slice(
@@ -95,17 +186,10 @@ const Dashboard = () => {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-  const [blur,setBlur]=useState(false);
-  const filterapply=()=>{
-setBlur(!blur);
-  }
-//   const navigate = useNavigate();  
-// const PersonalInfo=()=>{
-// navigate('/PerInfo')
-// }
+  const handlePageChange = (page) => setCurrentPage(page);
+  const filterapply = () => setBlur(!blur);
+
+
   return (
    
 <div
@@ -143,8 +227,10 @@ setBlur(!blur);
        <Input
     placeholder="Search"
     className="pl-9 w-full rounded-lg shadow-sm border border-gray-300 focus:ring-0 focus:outline-none"
-    onChange={() => {
-      // do nothing
+    onChange={(e) => {
+      setSearchText2(e.target.value);
+      setCurrentPage(1);
+
     }}
   />
   
@@ -210,6 +296,7 @@ setBlur(!blur);
         </svg>
       </div>
     )}
+    
   
     <Input
       placeholder="Search"
@@ -251,6 +338,8 @@ setBlur(!blur);
                     <th className="p-3 font-semibold">Action</th>
                   </tr>
                 </thead>
+
+
                 <tbody className="bg-white divide-y divide-gray-200">
                   {paginatedEmployees.map((emp, index) => (
                     <tr key={index} className="hover:bg-gray-50">
@@ -277,6 +366,10 @@ setBlur(!blur);
                       </td>
                     </tr>
                   ))}
+
+
+
+
                 </tbody>
               </table>
             </CardContent>
@@ -312,98 +405,115 @@ setBlur(!blur);
               </button>
             </div>
           </div>
+
+          
         </div>
 
 
-        {blur && (
-        <div className="fixed inset-0 z-50  flex items-center justify-center">
-          <div className="bg-white p-6 rounded-xl shadow-lg w-[350px] max-h-[90vh] overflow-auto">
-            <h2 className="text-lg font-bold mb-4">Filter</h2>
 
-            {/* Search Field */}
-            <div className="relative mb-4">
-              <Search className="absolute top-2.5 left-3 text-gray-400" size={16} />
-              <input
-                type="text"
-                placeholder="Search Employee"
-                className="pl-10 pr-4 py-2 border rounded-md w-full"
-              />
-            </div>
 
-            {/* Department Checkboxes */}
-            <div className="mb-4">
-              <p className="font-semibold mb-2">Department</p>
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  "Design",
-                  "Java",
-                  "HR",
-                  "Python",
-                  "Sales",
-                  "React JS",
-                  "Business Analyst",
-                  "Account",
-                  "Project Manager",
-                  "Nods JS"
-                ].map((dept) => (
-                  <label key={dept} className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked={selectedDepartments.includes(dept)}
-                      onChange={() => toggleDepartment(dept)}
-                      className="accent-blue-500"
-                    />
-                    {dept}
-                  </label>
-                ))}
+        {blur && 
+           (
+            <div className="fixed inset-0 z-50  flex items-center justify-center">
+              <div className="bg-white p-6 rounded-xl shadow-lg w-[350px] max-h-[90vh] overflow-auto">
+                <h2 className="text-lg font-bold mb-4">Filter</h2>
+    
+                {/* Search Field */}
+                <div className="relative mb-4 w-full">
+      {/* Icon */}
+      <Search className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400" size={16} />
+    
+      {/* Input */}
+      <input
+        type="text"
+        placeholder="Search Employee"
+        className="pl-9 pr-4 py-2 w-full shadow-sm border border-gray-300 rounded-lg focus:ring-0 focus:outline-none"
+        value={searchText1}
+        onChange={(e) => {
+          setSearchText1(e.target.value);
+          setCurrentPage(1);
+        }}
+      />
+     
+    </div>
+    
+    
+                {/* Department Checkboxes */}
+                <div className="mb-4">
+                  <p className="font-semibold mb-2">Department</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {[
+                      "Design",
+                      "Developement",
+                      "HR",
+                      "PM",
+                      "Sales",
+                      "React JS",
+                      "Business Analyst",
+                      "Account",
+                      "Project Manager",
+                      "Nods JS"
+                    ].map((dept) => (
+                      <label key={dept} className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={selectedDepartments.includes(dept)}
+                          onChange={() => toggleDepartment(dept)}
+                          className="accent-blue-500"
+                        />
+                        
+                        {dept}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+    
+                {/* Select Type Radio Buttons */}
+                <div className="mb-4">
+                  <p className="font-semibold mb-2">Select Type</p>
+                  <div className="flex gap-4">
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="type"
+                        value="Office"
+                        checked={workType === "Office"}
+                        onChange={(e) => setWorkType(e.target.value)}
+                      />
+                      Office
+                    </label>
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="type"
+                        value="Work from Home"
+                        checked={workType === "Work from Home"}
+                        onChange={(e) => setWorkType(e.target.value)}
+                      />
+                      Work from Home
+                    </label>
+                  </div>
+                </div>
+    
+                {/* Action Buttons */}
+                <div className="flex justify-between">
+                  <button
+                    onClick={() => setBlur(false)}
+                    className="px-4 py-2 bg-gray-200 rounded-lg cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleApply}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg cursor-pointer"
+                  >
+                    Apply
+                  </button>
+                </div>
               </div>
             </div>
-
-            {/* Select Type Radio Buttons */}
-            <div className="mb-4">
-              <p className="font-semibold mb-2">Select Type</p>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="type"
-                    value="Office"
-                    checked={workType === "Office"}
-                    onChange={(e) => setWorkType(e.target.value)}
-                  />
-                  Office
-                </label>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="type"
-                    value="Work from Home"
-                    checked={workType === "Work from Home"}
-                    onChange={(e) => setWorkType(e.target.value)}
-                  />
-                  Work from Home
-                </label>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex justify-between">
-              <button
-                onClick={() => setBlur(false)}
-                className="px-4 py-2 bg-gray-200 rounded-lg cursor-pointer"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleApply}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg cursor-pointer"
-              >
-                Apply
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+          )
+        }
 
     </div>
     
