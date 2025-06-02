@@ -78,14 +78,20 @@ const Dashboard = () => {
   const [sales,setSales]=useState('')
   const [hr,setHr]=useState('')
   const [pm,setPm]=useState('')
-
-
+  const [office,setOffice]=useState('')
+  const [wfhome,setWfhome]=useState('')
+  // console.log(office);
+console.log(wfhome);
   const toggleDepartment = (dept) => {
     setSelectedDepartments((prev) => {
       const updated = prev.includes(dept)
         ? prev.filter((d) => d !== dept)
         : [...prev, dept];
   
+        // const updated1 = prev.includes(type)
+        // ? prev.filter((d) => d !== type)
+        // : [...prev, type];
+        // if()
       // Check if Design is included after toggle
       if (updated.includes("Design")) {
         setDesign("Design");
@@ -102,6 +108,7 @@ const Dashboard = () => {
       else if(updated.includes("PM")){
         setPm("PM");
       }
+      // else if
       else {
         setDesign("");setDevelopement("");setSales("");
       }
@@ -120,61 +127,41 @@ const Dashboard = () => {
   const filteredEmployees = employees.filter((emp) => {
     const name = emp.name.toLowerCase();
     const empDept = emp.dept;
+    const empType = emp.type;
+    
     const s1 = searchText.toLowerCase();
     const s2 = searchText1.toLowerCase();
     const s3 = searchText2.toLowerCase();
   
-    // Case: if design is "Design", filter only "Design" employees
-    if (design === "Design") {
-      if (empDept !== "Design") return false; // Only include Design dept
+    // Department filtering logic
+    const departmentFilterActive =
+      design || developement || sales || hr || pm;
   
-      // If all search fields are empty, include all Design employees
-      if (!s1 && !s2 && !s3) return true;
+    const matchesDepartment =
+      (!departmentFilterActive) ||
+      (design === "Design" && empDept === "Design") ||
+      (developement === "Developement" && empDept === "Developement") ||
+      (sales === "Sales" && empDept === "Sales") ||
+      (hr === "HR" && empDept === "HR") ||
+      (pm === "PM" && empDept === "PM");
   
-      // Apply name filters for Design employees
-      return name.includes(s1) || name.includes(s2) || name.includes(s3);
-    }
-    if (developement === "Developement") {
-      if (empDept !== "Developement") return false; // Only include Design dept
+    // Work type filtering logic
+    const workTypeFilterActive = wfhome === "Remote" || office === "Office";
   
-      // If all search fields are empty, include all Design employees
-      if (!s1 && !s2 && !s3) return true;
+    const matchesWorkType =
+      (!workTypeFilterActive) ||
+      (wfhome === "Remote" && empType === "Remote") ||
+      (office === "Office" && empType === "Office");
   
-      // Apply name filters for Design employees
-      return name.includes(s1) || name.includes(s2) || name.includes(s3);
-    }
-    if (sales === "Sales") {
-      if (empDept !== "Sales") return false; // Only include Design dept
+    // Apply department + work type filters
+    if (!matchesDepartment || !matchesWorkType) return false;
   
-      // If all search fields are empty, include all Design employees
-      if (!s1 && !s2 && !s3) return true;
-  
-      // Apply name filters for Design employees
-      return name.includes(s1) || name.includes(s2) || name.includes(s3);
-    }
-    if (hr === "HR") {
-      if (empDept !== "HR") return false; // Only include Design dept
-  
-      // If all search fields are empty, include all Design employees
-      if (!s1 && !s2 && !s3) return true;
-  
-      // Apply name filters for Design employees
-      return name.includes(s1) || name.includes(s2) || name.includes(s3);
-    }
-    if (pm === "PM") {
-      if (empDept !== "PM") return false; // Only include Design dept
-  
-      // If all search fields are empty, include all Design employees
-      if (!s1 && !s2 && !s3) return true;
-  
-      // Apply name filters for Design employees
-      return name.includes(s1) || name.includes(s2) || name.includes(s3);
-    }
-    // Case: design is not "Design" — just use name filters for all employees
-    if (!s1 && !s2 && !s3) return true; // No filters applied
+    // Name search logic
+    if (!s1 && !s2 && !s3) return true;
   
     return name.includes(s1) || name.includes(s2) || name.includes(s3);
   });
+  
   
   
   
@@ -473,24 +460,33 @@ const Dashboard = () => {
                   <p className="font-semibold mb-2">Select Type</p>
                   <div className="flex gap-4">
                     <label className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="type"
-                        value="Office"
-                        checked={workType === "Office"}
-                        onChange={(e) => setWorkType(e.target.value)}
-                      />
+                    <input
+  type="radio"
+  name="type"
+  value="Office"
+  checked={workType === "Office"}
+  onChange={(e) => {
+    setWorkType(e.target.value);
+    setOffice(e.target.value);     // "Office"
+    setWfhome("");                 // reset Work from Home
+  }}
+/>
                       Office
                     </label>
                     <label className="flex items-center gap-2">
                       <input
                         type="radio"
                         name="type"
-                        value="Work from Home"
-                        checked={workType === "Work from Home"}
-                        onChange={(e) => setWorkType(e.target.value)}
+                        value="Remote"
+                        checked={workType === "Remote"}
+                        onChange={(e) =>{
+                          setWorkType(e.target.value);
+                          setWfhome(e.target.value);     // "Work from Home"
+                          setOffice("");                 // reset Office
+                        }}
                       />
-                      Work from Home
+                      
+                      Remote
                     </label>
                   </div>
                 </div>
