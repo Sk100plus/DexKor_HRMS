@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 import Account from "./Account";
 import Document from "./Document";
 import ProfInfo from "./ProfInfo";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 const PerInfo = () => {
 
-  
+  const navigate=useNavigate();
   const [activeTab, setActiveTab] = useState("personal");
   const tabs = [
     { id: "personal", label: "Personal Information" },
@@ -40,7 +40,10 @@ const PerInfo = () => {
   if(fname!=""&&lname!=""&&email!=""&&mobile!=""&&address!=""&&address!=""&&zip!=""){
     setActiveTab("professional");
   }
-
+const handleCancel=()=>{
+  // setActiveTab("")
+navigate("/DexKor_HRMS/");
+}
   };
   const [documents, setDocuments] = useState({
     appointmentLetter: null,
