@@ -351,7 +351,7 @@ const handleCancelAccount=()=>{
                     className="rounded-lg shadow-sm border border-gray-300 focus:ring-0 focus:outline-none"
                     required/>
                   <div className="col-span-full flex justify-end space-x-4 mt-4">
-                    <Link to="/">
+                    <Link to="/DexKor_HRMS">
                     <Button variant="outline" className="cursor-pointer bg-white text-black hover:bg-gray-200">
                       Cancel
                     </Button>
