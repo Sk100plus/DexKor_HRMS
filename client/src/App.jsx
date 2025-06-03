@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import PerInfo from "./pages/AddEmployee/PerInfo";
-import { Button } from "@/components/ui/button";
 
 function App() {
   return (
