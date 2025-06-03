@@ -8,58 +8,8 @@ import { useNavigate,Link } from 'react-router-dom';
 import PerInfo from '../AddEmployee/PerInfo';
 import { Search } from "lucide-react"; // or use another search icon
 import FilterMethod from './FilterMethod';
-
-const employees = [
-  // ...your full employees array here
-  { name: "Darlene Robertson", id: "345321231", dept: "Design", role: "UI/UX Designer", type: "Office", status: "Permanent" },
-  { name: "Floyd Miles", id: "987890345", dept: "Developement", role: "PHP Developer", type: "Office", status: "Permanent" },
-  { name: "Cody Fisher", id: "453367122", dept: "Sales", role: "Sales Manager", type: "Office", status: "Permanent" },
-  { name: "Dianne Russell", id: "345321231", dept: "Sales", role: "BDM", type: "Remote", status: "Permanent" },
-  { name: "Savannah Nguyen", id: "453677881", dept: "Design", role: "Design Lead", type: "Office", status: "Permanent" },
-  { name: "Jacob Jones", id: "009918765", dept: "Developement", role: "Python Developer", type: "Remote", status: "Permanent" },
-  { name: "Marvin McKinney", id: "238870122", dept: "Developement", role: "Sr. UI Developer", type: "Remote", status: "Permanent" },
-  { name: "Brooklyn Simmons", id: "124355111", dept: "PM", role: "Project Manager", type: "Office", status: "Permanent" },
-  { name: "Kristin Watson", id: "435540099", dept: "HR", role: "HR Executive", type: "Office", status: "Permanent" },
-  { name: "Kathryn Murphy", id: "009812890", dept: "Developement", role: "React JS Developer", type: "Office", status: "Permanent" },
-  { name: "Arlene McCoy", id: "671190345", dept: "Developement", role: "Node JS", type: "Office", status: "Permanent" },
-  { name: "Devon Lane", id: "091233412", dept: "BA", role: "Business Analyst", type: "Remote", status: "Permanent" },
-  { name: "Darlene Robertson", id: "345321231", dept: "Design", role: "UI/UX Designer", type: "Office", status: "Permanent" },
-  { name: "Floyd Miles", id: "987890345", dept: "Developement", role: "PHP Developer", type: "Office", status: "Permanent" },
-  { name: "Cody Fisher", id: "453367122", dept: "Sales", role: "Sales Manager", type: "Office", status: "Permanent" },
-  { name: "Dianne Russell", id: "345321231", dept: "Sales", role: "BDM", type: "Remote", status: "Permanent" },
-  { name: "Savannah Nguyen", id: "453677881", dept: "Design", role: "Design Lead", type: "Office", status: "Permanent" },
-  { name: "Jacob Jones", id: "009918765", dept: "Developement", role: "Python Developer", type: "Remote", status: "Permanent" },
-  { name: "Marvin McKinney", id: "238870122", dept: "Developement", role: "Sr. UI Developer", type: "Remote", status: "Permanent" },
-  { name: "Brooklyn Simmons", id: "124355111", dept: "PM", role: "Project Manager", type: "Office", status: "Permanent" },
-  { name: "Kristin Watson", id: "435540099", dept: "HR", role: "HR Executive", type: "Office", status: "Permanent" },
-  { name: "Kathryn Murphy", id: "009812890", dept: "Developement", role: "React JS Developer", type: "Office", status: "Permanent" },
-  { name: "Arlene McCoy", id: "671190345", dept: "Developement", role: "Node JS", type: "Office", status: "Permanent" },
-  { name: "Devon Lane", id: "091233412", dept: "BA", role: "Business Analyst", type: "Remote", status: "Permanent" }, // ...your full employees array here
-  { name: "Darlene Robertson", id: "345321231", dept: "Design", role: "UI/UX Designer", type: "Office", status: "Permanent" },
-  { name: "Floyd Miles", id: "987890345", dept: "Developement", role: "PHP Developer", type: "Office", status: "Permanent" },
-  { name: "Cody Fisher", id: "453367122", dept: "Sales", role: "Sales Manager", type: "Office", status: "Permanent" },
-  { name: "Dianne Russell", id: "345321231", dept: "Sales", role: "BDM", type: "Remote", status: "Permanent" },
-  { name: "Savannah Nguyen", id: "453677881", dept: "Design", role: "Design Lead", type: "Office", status: "Permanent" },
-  { name: "Jacob Jones", id: "009918765", dept: "Developement", role: "Python Developer", type: "Remote", status: "Permanent" },
-  { name: "Marvin McKinney", id: "238870122", dept: "Developement", role: "Sr. UI Developer", type: "Remote", status: "Permanent" },
-  { name: "Brooklyn Simmons", id: "124355111", dept: "PM", role: "Project Manager", type: "Office", status: "Permanent" },
-  { name: "Kristin Watson", id: "435540099", dept: "HR", role: "HR Executive", type: "Office", status: "Permanent" },
-  { name: "Kathryn Murphy", id: "009812890", dept: "Developement", role: "React JS Developer", type: "Office", status: "Permanent" },
-  { name: "Arlene McCoy", id: "671190345", dept: "Developement", role: "Node JS", type: "Office", status: "Permanent" },
-  { name: "Devon Lane", id: "091233412", dept: "BA", role: "Business Analyst", type: "Remote", status: "Permanent" },
-  { name: "Darlene Robertson", id: "345321231", dept: "Design", role: "UI/UX Designer", type: "Office", status: "Permanent" },
-  { name: "Floyd Miles", id: "987890345", dept: "Developement", role: "PHP Developer", type: "Office", status: "Permanent" },
-  { name: "Cody Fisher", id: "453367122", dept: "Sales", role: "Sales Manager", type: "Office", status: "Permanent" },
-  { name: "Dianne Russell", id: "345321231", dept: "Sales", role: "BDM", type: "Remote", status: "Permanent" },
-  { name: "Savannah Nguyen", id: "453677881", dept: "Design", role: "Design Lead", type: "Office", status: "Permanent" },
-  { name: "Jacob Jones", id: "009918765", dept: "Developement", role: "Python Developer", type: "Remote", status: "Permanent" },
-  { name: "Marvin McKinney", id: "238870122", dept: "Developement", role: "Sr. UI Developer", type: "Remote", status: "Permanent" },
-  { name: "Brooklyn Simmons", id: "124355111", dept: "PM", role: "Project Manager", type: "Office", status: "Permanent" },
-  { name: "Kristin Watson", id: "435540099", dept: "HR", role: "HR Executive", type: "Office", status: "Permanent" },
-  { name: "Kathryn Murphy", id: "009812890", dept: "Developement", role: "React JS Developer", type: "Office", status: "Permanent" },
-  { name: "Arlene McCoy", id: "671190345", dept: "Developement", role: "Node JS", type: "Office", status: "Permanent" },
-  { name: "Devon Lane", id: "091233412", dept: "BA", role: "Business Analyst", type: "Remote", status: "Permanent" },
-];
+import employees from './employee';
+// 
 
 
 const ITEMS_PER_PAGE = 7;
