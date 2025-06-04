@@ -7,7 +7,6 @@ import Account from "./Account";
 import Document from "./Document";
 import ProfInfo from "./ProfInfo";
 import { Link, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 const PerInfo = () => {
 
   const navigate=useNavigate();
@@ -26,10 +25,10 @@ const PerInfo = () => {
   const [address,setAddress]=useState("");
   const [zip,setZip]=useState("");
 
-  const [drag1,setDrag1]=useState(null);
-  const [drag2,setDrag2]=useState(null);
-  const [drag3,setDrag3]=useState(null);
-  const [drag4,setDrag4]=useState(null);
+  // const [drag1,setDrag1]=useState(null);
+  // const [drag2,setDrag2]=useState(null);
+  // const [drag3,setDrag3]=useState(null);
+  // const [drag4,setDrag4]=useState(null);
   
 
   const formRef = useRef();

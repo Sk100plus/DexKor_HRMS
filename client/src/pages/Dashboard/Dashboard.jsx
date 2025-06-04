@@ -8,13 +8,15 @@ import { useNavigate,Link } from 'react-router-dom';
 import PerInfo from '../AddEmployee/PerInfo';
 import { Search } from "lucide-react"; // or use another search icon
 import FilterMethod from './FilterMethod';
-import employees from './employee';
-// 
-
+import employees from './Employee.jsx';
+import EmployeeDet from './EmployeeDet';
+// import { useNavigate } from 'react-router-dom';
 
 const ITEMS_PER_PAGE = 7;
 
 const Dashboard = () => {
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+// console.log(employees);
   const [searchText, setSearchText] = useState('');
   const [searchText1, setSearchText1] = useState('');
   const [searchText2, setSearchText2] = useState('');
@@ -31,7 +33,7 @@ const Dashboard = () => {
   const [office,setOffice]=useState('')
   const [wfhome,setWfhome]=useState('')
   // console.log(office);
-console.log(wfhome);
+// console.log(wfhome);
   const toggleDepartment = (dept) => {
     setSelectedDepartments((prev) => {
       const updated = prev.includes(dept)
@@ -60,9 +62,9 @@ console.log(wfhome);
       }
       // else if
       else {
-        setDesign("");setDevelopement("");setSales("");
+        setDesign("");setDevelopement("");setSales("");setPm("");setHr("");
       }
-  console.log(design)
+  // console.log(design)
       return updated;
     });
   };
@@ -84,6 +86,10 @@ console.log(wfhome);
     const s3 = searchText2.toLowerCase();
   
     // Department filtering logic
+    if(s1)return name.includes(s1) ;
+    if(s2)return name.includes(s2) ;
+    if(s3)return name.includes(s3) ;
+    
     const departmentFilterActive =
       design || developement || sales || hr || pm;
   
@@ -125,7 +131,11 @@ console.log(wfhome);
 
   const handlePageChange = (page) => setCurrentPage(page);
   const filterapply = () => setBlur(!blur);
+const navigate=useNavigate();
 
+  const handleClick = (employee) => {
+    navigate(`/employee/${employee.id}`);
+  };
 
   return (
    
@@ -279,11 +289,12 @@ console.log(wfhome);
 
                 <tbody className="bg-white divide-y divide-gray-200">
                   {paginatedEmployees.map((emp, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
+                    <tr key={index} className="hover:bg-gray-50 cursor-pointer" onClick={() => {setSelectedEmployee(emp),handleClick(emp)}}>
+
                      
                      <td className="p-3">
-    <div className="flex items-center gap-3">
-      <img src={image} alt={emp.name} className="w-10 h-10 rounded-3xl object-cover" />
+    <div className="flex items-center gap-3"  >
+      <img src={emp.image} alt={emp.name} className="w-10 h-10 rounded-3xl object-cover" />
       <span>{emp.name}</span>
     </div>
   </td>
@@ -303,6 +314,7 @@ console.log(wfhome);
                       </td>
                     </tr>
                   ))}
+
 
 
 
