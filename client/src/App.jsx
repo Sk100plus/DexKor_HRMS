@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import PerInfo from "./pages/AddEmployee/PerInfo.jsx";
 import employees from "./pages/Dashboard/Employee.jsx"; // Assuming this is an array
@@ -16,7 +16,7 @@ import Notification from "./pages/Notification/Notification.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
             {/* <Navbar /> */}
       <main className="w-full min-h-screen">
       
@@ -46,7 +46,7 @@ function App() {
           />
         </Routes>
       </main>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
