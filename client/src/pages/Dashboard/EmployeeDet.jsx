@@ -59,7 +59,7 @@ const EmployeeDet = ({ selectedEmployee }) => {
           </div>
 
           {/* Right: Edit Profile Button */}
-          <button className="flex items-center gap-1 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-md text-sm">
+          <button className="flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
             <Pencil size={16} />
             Edit Profile
           </button>
@@ -68,7 +68,7 @@ const EmployeeDet = ({ selectedEmployee }) => {
         {/* Back Button */}
         <div className="flex justify-end mt-6">
           <button
-            className="bg-blue-600 hover:bg-purple-700 text-white px-4 py-2 rounded"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
             onClick={() => navigate('/DexKor_HRMS')}
           >
             Back
@@ -86,7 +86,7 @@ const EmployeeDet = ({ selectedEmployee }) => {
               key={item}
               className={`flex items-center gap-2 p-2 rounded cursor-pointer ${
                 activeTab === item
-                  ? 'text-violet-600 font-semibold bg-violet-100'
+                  ? 'text-blue-600 font-semibold bg-blue-100'
                   : 'hover:bg-gray-100'
               }`}
               onClick={() => setActiveTab(item)}
