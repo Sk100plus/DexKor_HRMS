@@ -21,6 +21,7 @@ function App() {
       <main className="w-full min-h-screen">
       
         <Routes>
+        <Route path="/" element={<Dashboard />} />
         <Route path="/DexKor_HRMS" element={<Dashboard />} />
         {/* <Route path="/DexKor_HRMS/Navbar" element={<Navbar />} /> */}
 
