@@ -28,7 +28,7 @@ const Navbar = () => {
         </nav>
 
         {/* Theme toggle */}
-        <div className="flex justify-between mb-0 px-1 mt-6">
+        <div className="flex justify-between mb-0 px-1 mt-90">
           <button className="text-sm px-3 py-1 rounded bg-purple-100 text-purple-700">Light</button>
           <button className="text-sm px-3 py-1 rounded hover:bg-gray-100">Dark</button>
         </div>
