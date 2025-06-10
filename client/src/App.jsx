@@ -26,23 +26,23 @@ function App() {
         {/* <Route path="/DexKor_HRMS/Navbar" element={<Navbar />} /> */}
 
           {/* Department Routes */}
-          <Route path="/DexKor_HRMS/allDepartment" element={<AllDept />} />
+          <Route path="/DexKor_HRMS/#/allDepartment" element={<AllDept />} />
           <Route
-  path="/DexKor_HRMS/allDepartment/department/:name"
+  path="/DexKor_HRMS/#/allDepartment/department/:name"
   element={<DepartmentDetail />}
 />
-<Route path="/DexKor_HRMS/Attendance" element={<Attendance/>} />
-<Route path="/DexKor_HRMS/Jobs" element={<Jobs/>} />
-<Route path="/DexKor_HRMS/Candidates" element={<Candidates/>} />
-<Route path="/DexKor_HRMS/Holidays" element={<Holidays/>} />
-<Route path="/DexKor_HRMS/Setting" element={<Setting/>} />
-<Route path="/DexKor_HRMS/Notification" element={<Notification/>} />
+<Route path="/DexKor_HRMS/#/Attendance" element={<Attendance/>} />
+<Route path="/DexKor_HRMS/#/Jobs" element={<Jobs/>} />
+<Route path="/DexKor_HRMS/#/Candidates" element={<Candidates/>} />
+<Route path="/DexKor_HRMS/#/Holidays" element={<Holidays/>} />
+<Route path="/DexKor_HRMS/#/Setting" element={<Setting/>} />
+<Route path="/DexKor_HRMS/#/Notification" element={<Notification/>} />
 
 
           {/* Employee Add + Detail View */}
-          <Route path="/add-employee-personal" element={<PerInfo />} />
+          <Route path="/#/add-employee-personal" element={<PerInfo />} />
           <Route
-            path="/employee/:id"
+            path="/#/employee/:id"
             element={<EmployeeDetWrapper employees={employees} />}
           />
         </Routes>
