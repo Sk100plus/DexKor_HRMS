@@ -188,7 +188,7 @@ const navigate=useNavigate();
             <div className="flex gap-2">
               <Link to="/add-employee-personal">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg flex items-center cursor-pointer" >
-                <Plus size={16} className="mr-2" /> Add New Employees
+                <Plus size={16} className="mr-2" /> Add New Employee
               </Button>
               </Link>
              
