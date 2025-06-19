@@ -92,15 +92,16 @@ import Navbar from '../Navbar/Navbar';
 const AllDept = () => {
     const navigate = useNavigate();
   return (
-    <div className='p-6 min-h-screen font-sans select-none flex '>
- <Navbar/>
-<div className="h-auto overflow-hidden  px-6 pt-8  select-none w-full ">
+    <div className='font-sans select-none  '>
+ <div >
+  <Profile/>
+ </div>
+<div className="h-auto    w-full flex">
      
-        <div className='pb-5'>
-        <Profile/>
+        <div className=''>
+        <Navbar/>
         </div>
-        
-    <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200 pt-10">
+    <div className=" bg-white   p-6  pt-10 w-full">
       {/* <h1 className="text-xl font-semibold text-gray-800 mb-1">All Departments</h1>
       <p className="text-sm text-gray-500 mb-6">All Departments Information</p>
    */}

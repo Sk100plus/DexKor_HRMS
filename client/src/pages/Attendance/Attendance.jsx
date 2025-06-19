@@ -13,12 +13,21 @@ const Attendance = () => {
   const currentRecords = employees.slice(indexOfFirstRecord, indexOfLastRecord);
 
   return (
-    <div className='p-6 min-h-screen font-sans select-none flex '>
-<Navbar/>
-   
-    <div className="p-10 w-full">
-        <Profile/>
-      <h1 className="text-xl font-bold text-gray-800 mb-6">Employee Attendance</h1>
+    <div className='font-sans select-none  '>
+ <div >
+  <Profile/>
+ </div>
+<div className="h-auto    w-full flex ">
+     
+        <div className=''>
+        <Navbar/>
+        </div>
+        
+        <div className='w-full h-auto pl-5'>
+          <div className='my-10'>
+          <h1 className="text-xl font-bold text-gray-800 ">Employee Attendance</h1>
+
+          </div>
       
       <div className="bg-white shadow rounded-lg overflow-hidden ">
         <table className="min-w-full divide-y divide-gray-200 text-sm">
@@ -85,6 +94,8 @@ const Attendance = () => {
         </div>
       </div>
     </div>
+        </div>
+    
     </div>
   );
 };

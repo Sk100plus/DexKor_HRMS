@@ -31,12 +31,17 @@ const Setting = () => {
   }, [language]);
 
   return (
-    <div className="p-6 min-h-screen font-sans select-none flex">
-
-<Navbar/>
-   
-    <div className="p-8 min-h-screen w-full select-none dark:bg-gray-900 dark:text-white transition">
+    <div className=" font-sans select-none ">
+  <div>
       <Profile />
+      </div>
+
+   
+    <div className="flex w-full select-none dark:bg-gray-900 dark:text-white transition">
+    <div>
+    <Navbar/>
+    </div>
+    
 
       <div className="w-full mx-auto bg-white dark:bg-gray-800 rounded-xl shadow px-8 py-6">
         <h1 className="text-2xl font-semibold text-gray-800 dark:text-white mb-1">Settings</h1>

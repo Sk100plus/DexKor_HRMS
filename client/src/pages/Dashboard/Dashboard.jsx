@@ -139,15 +139,24 @@ const navigate=useNavigate();
     navigate(`/employee/${employee.id}`);
   };
 
+
   return (
    
 <div
-  className={`p-6 min-h-screen font-sans select-none flex `}
+  className={` font-sans select-none  `}
 >       
-<Navbar/>
-<div className="max-w-7xl mx-auto w-full ">
+<div >
+<Profile setSearchText2={setSearchText2} setCurrentPage={setCurrentPage} />
+
+</div>
+<div className="flex ">
+<div className='ml-0 '>
+<Navbar />
+
+</div>
+<div className={`max-w-7xl mx-auto w-full mt-5  `}>
         
-       <Profile setSearchText2={setSearchText2} setCurrentPage={setCurrentPage} />
+       
   
           <Card className="border border-gray-200 shadow-md rounded-2xl">
           <div className="flex justify-between items-center mb-6">
@@ -286,7 +295,7 @@ const navigate=useNavigate();
           
         </div>
 
-
+        </div>
 
 
         {blur && 

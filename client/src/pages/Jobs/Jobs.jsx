@@ -45,14 +45,18 @@ const Jobs = () => {
   };
 
   return (
-<div className=' p-6 min-h-screen font-sans select-none flex'>
-  <Navbar/>
-<div className="p-6 mr-5 select-none bg-white shadow-lg rounded-xl border-gray-600 w-full">
-  <div className=' mb-5'>
+<div className='  font-sans select-none '>
+<div className='  shadow-lg'>
   <Profile/>
 
   </div>
-      <div className="flex justify-between items-center mb-4">
+ 
+<div className="  bg-white shadow-lg rounded-xl border-gray-600 w-full flex">
+ <div>
+ <Navbar/>
+ </div>
+ <div className='w-full px-4 my-6 mx-5'>
+ <div className="flex justify-between items-center mb-8">
         <Input
           placeholder="Search Job"
           className=" w-1/3 pl-9  rounded-lg shadow-sm border border-gray-300 focus:ring-0 focus:outline-none"
@@ -130,6 +134,8 @@ Add New Job</Button>
           </div>
         </div>
       )}
+ </div>
+    
     </div>
 </div>
    

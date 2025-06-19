@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import image from '../profile.jfif';
 import Navbar from '../Navbar/Navbar';
+import Profile from '../Dashboard/Profile';
 
 // Sample candidates (repeat or add more)
 const candidates = [
@@ -47,13 +48,20 @@ const Candidates = () => {
   };
 
   return (
-<div className='p-6 min-h-screen font-sans select-none flex '>
-<Navbar/>
-    
-    <div className="w-full mx-auto p-6 space-y-6  select-none">
+<div className=' font-sans select-none  '>
+  <div>
+    <Profile/>
+
+  </div>
+  <div className='flex'>
+  <div>
+  <Navbar/>
+  </div>
+<div className='w-full'>
+<div className="  select-none px-5">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
+      <div className=" flex justify-between items-center">
+        <div className='my-2 '>
           <h2 className="text-2xl font-semibold text-gray-800">Candidates</h2>
           <p className="text-sm text-gray-500">Show All Candidates</p>
         </div>
@@ -158,6 +166,13 @@ const Candidates = () => {
         </div>
       </div>
     </div>
+</div>
+  </div>
+  
+ 
+
+    
+  
     </div>
   );
 };
