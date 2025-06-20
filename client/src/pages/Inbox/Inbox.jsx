@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import Profile from '../Dashboard/Profile';
 import Navbar from '../Navbar/Navbar';
-import LeaReq from './ATTENDANCE/LeaReq';
+import Main from './ATTENDANCE/Main';
+import Main1 from './FINANCE/Main1';
+import Main2 from './EmployeRequest/Main2';
+import Help from './HelpDesk/Help';
+import SmartForm from './SmartFormReq/SmartForm';
+import ReqReq from './RequiReq/ReqReq';
 const Service = () => {
   const tabs = [
    "ATTENDANCE", "FINANCE", "EMPLOYEE REQUEST", "HELP DESK TICKETS",
-    "SMART FROM REQUESTS", "REQUISITION REQUESTS"
+    "SMART FORM REQUESTS", "REQUISITION REQUESTS"
   ];
 
-  const [activeTab, setActiveTab] = useState("MY PROFILE");
+  const [activeTab, setActiveTab] = useState("ATTENDANCE");
 
   return (
     <div className="flex flex-col h-screen select-none">
@@ -46,7 +51,32 @@ const Service = () => {
           <div className="mt-6">
            {
             activeTab=="ATTENDANCE"&&(
-                <LeaReq/>
+                <Main/>
+            )
+           }
+           {
+            activeTab=="FINANCE"&&(
+              <Main1/>
+            )
+           }
+           {
+            activeTab=="EMPLOYEE REQUEST"&&(
+              <Main2/>
+            )
+           }
+           {
+            activeTab=="HELP DESK TICKETS"&&(
+              <Help/>
+            )
+           }
+           {
+            activeTab=="SMART FORM REQUESTS"&&(
+              <SmartForm/>
+            )
+           }
+           {
+            activeTab=="REQUISITION REQUESTS"&&(
+              <ReqReq/>
             )
            }
           </div>
