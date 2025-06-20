@@ -18,6 +18,7 @@ import ManagePlan from "./pages/Subscription/ManagePlan.jsx";
 import BasicDetail from "./pages/SelfService/AllPArt/My Profile/BasicDetail.jsx";
 import Service from "./pages/SelfService/Service.jsx";
 import Inbox from "./pages/Inbox/Inbox.jsx";
+import Orga from "./pages/Organization/Orga.jsx";
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
           <Route path="/ManagePlan" element={<ManagePlan />} />
           <Route path="/Service" element={<Service/>} />
           <Route path="/Inbox" element={<Inbox/>} />
+          <Route path="/Organization" element={<Orga/>} />
           {/* <Route path="/BasicDetail" element={<BasicDetail/>} /> */}
 
         </Routes>

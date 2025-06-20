@@ -11,7 +11,7 @@ import {
   Menu,
   UserCog,
   X,
-  Inbox
+  Inbox,
 } from "lucide-react";
 
 const Navbar = () => {
@@ -25,6 +25,7 @@ const Navbar = () => {
     { name: "Dashboard", path: "/", icon: <Home size={15} /> },
     { name: "Self Service", path: "/Service", icon: <UserCog size={15} /> },
     { name: "Inbox", path: "/Inbox", icon: <Inbox size={15} /> },
+    { name: "Organization", path: "/Organization", icon: <Building size={15} /> },
   { name: "All Departments", path: "/allDepartment", icon: <Building size={15} /> },
   { name: "Attendance", path: "/Attendance", icon: <Calendar size={15} /> },
   { name: "Jobs", path: "/Jobs", icon: <BarChart size={15} /> },
