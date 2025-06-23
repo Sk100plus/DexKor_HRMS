@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Summary from "./Summary";
-import Reports from "./Reports";
+import Summary from "./SUMMARY/Summary";
+import Reports from "./REPORTS/Reports";
 
 // import other components like DailyAttendance, Leave, etc.
 

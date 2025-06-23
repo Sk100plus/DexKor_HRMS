@@ -9,6 +9,7 @@ import CustField from "./CustField";
 import BulOper from "./BulOper";
 import FinaYrCon from "./FinaYrCon";
 import BusiUni from "./BusiUni";
+import PayBand from "./PayBand";
 
 // import other components like DailyAttendance, Leave, etc.
 

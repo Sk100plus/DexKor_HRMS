@@ -10,6 +10,8 @@ import Main8 from './ONBOARD/Main8';
 import Main9 from './EXIT/Main9';
 import Main10 from './HELP_DESK/Main10';
 import Main11 from './DOCUMENT/Main11';
+import Main12 from './EMPLOYEE_PULSE/Main12';
+import Main13 from './SETTINGS/Main13';
 
 const Orga = () => {
     const tabs = [
@@ -99,6 +101,17 @@ const Orga = () => {
             <Main11/>
         )
     }
+     {
+        activeTab=="EMPLOYEE PULSE SURVEY"&&(
+            <Main12/>
+        )
+    }
+    {
+      activeTab=="SETTINGS"&&(
+        <Main13/>
+      )
+    }
+
           </div>
         </div>
       </div>
