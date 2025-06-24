@@ -19,6 +19,7 @@ import BasicDetail from "./pages/SelfService/AllPArt/My Profile/BasicDetail.jsx"
 import Service from "./pages/SelfService/Service.jsx";
 import Inbox from "./pages/Inbox/Inbox.jsx";
 import Orga from "./pages/Organization/Orga.jsx";
+import MyTeam from "./pages/Team/MyTeam.jsx";
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="/Candidates" element={<Candidates />} />
           <Route path="/Holidays" element={<Holidays />} />
           <Route path="/Setting" element={<Setting />} />
+          <Route path="/Team" element={<MyTeam/>} />
           <Route path="/Notification" element={<Notification />} />
           <Route path="/add-employee-personal" element={<PerInfo />} />
           <Route path="/employee/:id" element={<EmployeeDetWrapper employees={employees} />} />

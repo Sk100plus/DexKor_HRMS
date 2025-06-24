@@ -25,12 +25,14 @@ const Navbar = () => {
     { name: "Dashboard", path: "/", icon: <Home size={15} /> },
     { name: "Self Service", path: "/Service", icon: <UserCog size={15} /> },
     { name: "Inbox", path: "/Inbox", icon: <Inbox size={15} /> },
+    { name: "My Team", path: "/Team", icon: <Users size={15} /> },
+    
     { name: "Organization", path: "/Organization", icon: <Building size={15} /> },
   { name: "All Departments", path: "/allDepartment", icon: <Building size={15} /> },
   { name: "Attendance", path: "/Attendance", icon: <Calendar size={15} /> },
-  { name: "Jobs", path: "/Jobs", icon: <BarChart size={15} /> },
-  { name: "Candidates", path: "/Candidates", icon: <Users size={15} /> },
-  { name: "Holidays", path: "/Holidays", icon: <Calendar size={15} /> },
+  // { name: "Jobs", path: "/Jobs", icon: <BarChart size={15} /> },
+  // { name: "Candidates", path: "/Candidates", icon: <Users size={15} /> },
+  // { name: "Holidays", path: "/Holidays", icon: <Calendar size={15} /> },
   { name: "Settings", path: "/Setting", icon: <User size={15} /> },
   {
     name: "Manage Subscription",
